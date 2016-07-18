@@ -1,17 +1,17 @@
-# Nagios BIRD plugins
+# Nagios BIRD plugin
 
 This repository contains [Nagios] plugins for monitoring the
 [BIRD routing daemon].
 
-The plugins are written in Perl, and depend on `Nagios::Plugin`. The included
-`birdctl.pm` module is also required and needs to be installed somewhere in
-the Perl include path.
+The plugins are written in Perl, and depend on `Monitoring::Plugin` (included
+in this Debian package). The necessary library `birdctl.pm` is part of the
+librarys (also included in this Debian package).
 
 ## check_bird_proto
 
 This plugin monitors a protocol in the BIRD configuration.
 
-    Usage: check_bird_proto -p <protocol> [ -r <table> -z -s <socket> ]
+    Usage: check_bird_proto -p <protocol|protocol instance> [ -r <table> -z -s <socket> ]
 
  * BIRD must be running, or CRITICAL is reported.
  * The protocol must be up, or CRITICAL is reported.

@@ -6,6 +6,7 @@ prefix = /usr
 libdir = $(prefix)/lib
 sysconfdir = $(prefix)/etc
 nagiosdir = $(libdir)/nagios/plugins
+nagioslibdir = $(libdir)/nagios/lib
 nagiosconfdir = $(sysconfdir)/nagios-plugins/config
 
 tmp_dir = $(CURDIR)/tmp
@@ -31,7 +32,13 @@ dist:
 install:
 	@echo "Installing Bird Nagios plugins in $(DESTDIR)$(nagiosdir)"
 	install -d $(DESTDIR)$(nagiosdir)
-	install -m 0755 src/* $(DESTDIR)$(nagiosdir)
+	install -m 0755 src/plugins/* $(DESTDIR)$(nagiosdir)
+	install -d $(DESTDIR)$(nagioslibdir)
+	install -d $(DESTDIR)$(nagioslibdir)/Monitoring
+	install -d $(DESTDIR)$(nagioslibdir)/Monitoring/Plugin
+	install -m 0644 -D src/lib/*.pm $(DESTDIR)$(nagioslibdir)
+	install -m 0644 -D src/lib/Monitoring/*.pm $(DESTDIR)$(nagioslibdir)/Monitoring/
+	install -m 0644 -D src/lib/Monitoring/Plugin/*.pm $(DESTDIR)$(nagioslibdir)/Monitoring/Plugin/
 	install -d $(DESTDIR)$(nagiosconfdir)
 	install -m 0644 config/* $(DESTDIR)$(nagiosconfdir)
 
