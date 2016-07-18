@@ -1,0 +1,5 @@
+nagios-plugins-ceph (0.2.0-1) unstable; urgency=low
+
+  * Initial release
+
+ -- Roman Plessl <roman.plessl@nine.ch>  Mon, 18 Jul 2016 11:30:10 +1300

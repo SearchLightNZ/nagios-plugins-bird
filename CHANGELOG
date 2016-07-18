@@ -1,0 +1,5 @@
+Nagios plugins for Bird
+-----------------------
+Version 0.2.0:
+* Initial 'packaged' bird nagios plugin.
+

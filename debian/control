@@ -1,0 +1,12 @@
+Source: nagios-plugins-bird
+Maintainer: Roman Plessl <roman.plessl@nine.ch>
+Section: misc
+Priority: optional
+Standards-Version: 3.9.5
+Build-Depends: debhelper (>= 8),
+
+Package: nagios-plugins-bird
+Architecture: all
+Depends: ${perl:Depends}, ${misc:Depends}
+Description: Nagios plugins for Bird
+ This package provides a set of plugins to monitor the bird service.
