@@ -27,7 +27,7 @@ $np->add_arg(
 $np->add_arg(
   spec => "socket|s=s",
   help => "The location of the BIRD control socket.",
-  default => "/var/run/bird.ctl",
+  default => "/var/run/bird/bird.ctl",
 );
 $np->getopts;
 
