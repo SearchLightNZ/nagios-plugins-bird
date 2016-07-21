@@ -1,3 +1,17 @@
+nagios-plugins-bird (0.3.0-1) unstable; urgency=low
+
+  * added plugins-metadata for check_bird (in a unusal destination in 
+    Ubuntu, but nagios configuration directory in pacemaker seems to
+    be transfered from the SuSE system)
+
+  * renamed check_bird_proto to check_bird which is more equal to the
+    other check_* tests
+
+  * changed API from -p|--protocol to -i|--instance which is also more
+    equal to other check_* tests and IMHO easier to understand.
+
+ -- Roman Plessl <roman.plessl@nine.ch>  Thu, 21 Jul 2016 21:09:05 +0200
+
 nagios-plugins-bird (0.2.0-2) unstable; urgency=low
 
   * Fixing Source to use Perl Module Monitoring::Plugin (old Nagios::Plugin
