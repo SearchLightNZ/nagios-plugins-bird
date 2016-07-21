@@ -56,18 +56,18 @@ eval q{
       $mp->nagios_exit(CRITICAL, "Protocol $status[0] is $status[3] - info: $status[5]");
     }
     else {
-      $mp->nagios_exit(CRITICAL, "Protocol $status[0] is $status[3] - info: Protocol Down");
+      $mp->nagios_exit(CRITICAL, "Protocol $status[0] is $status[3] - info: Protocol / Instance Down");
     }
   }
 
   # Inspect routes imported from this protocol
-  $_ = $bird->cmd("show route table " . $mp->opts->table . " protocol " . $mp->opts->protocol . " count");
+  $_ = $bird->cmd("show route table " . $mp->opts->table . " protocol " . $mp->opts->instance . " count");
   /^0014 (\d+) of \d+ routes for \d+ networks$/ or $mp->nagios_exit(CRITICAL, $_);
 
   # Final status
   $mp->nagios_exit(
     $mp->opts->zero && $1 eq "0" ? CRITICAL : OK,
-    "Protocol $status[0] is $status[3] - $1 routes imported."
+    "Protocol / Instance $status[0] is $status[3] - $1 routes imported."
   );
 };
 if ($@) { $mp->nagios_exit(CRITICAL, $@); }
