@@ -1,12 +1,14 @@
 name = nagios-plugins-bird
-version = 0.2.0
+version = 0.3.0
 
 # install options (like configure)
 prefix = /usr
 libdir = $(prefix)/lib
+sharedir = $(prefix)/share
 sysconfdir = $(prefix)/etc
 nagiosdir = $(libdir)/nagios/plugins
 nagioslibdir = $(libdir)/nagios/lib
+nagiosmetadatadir = $(sharedir)/nagios/plugins-metadata
 nagiosconfdir = $(sysconfdir)/nagios-plugins/config
 
 tmp_dir = $(CURDIR)/tmp
@@ -37,8 +39,10 @@ install:
 	install -d $(DESTDIR)$(nagioslibdir)/Monitoring
 	install -d $(DESTDIR)$(nagioslibdir)/Monitoring/Plugin
 	install -m 0644 -D src/lib/*.pm $(DESTDIR)$(nagioslibdir)
-	install -m 0644 -D src/lib/Monitoring/*.pm $(DESTDIR)$(nagioslibdir)/Monitoring/
-	install -m 0644 -D src/lib/Monitoring/Plugin/*.pm $(DESTDIR)$(nagioslibdir)/Monitoring/Plugin/
+	install -m 0644 -D src/lib/Monitoring/*.pm $(DESTDIR)$(nagioslibdir)/Monitoring
+	install -m 0644 -D src/lib/Monitoring/Plugin/*.pm $(DESTDIR)$(nagioslibdir)/Monitoring/Plugin
+	install -d $(DESTDIR)$(nagiosmetadatadir)
+	install -m 0644 share/plugins-metadata/* $(DESTDIR)$(nagiosmetadatadir)
 	install -d $(DESTDIR)$(nagiosconfdir)
 	install -m 0644 config/* $(DESTDIR)$(nagiosconfdir)
 

@@ -9,12 +9,12 @@ librarys (also included in this Debian package).
 
 ## check_bird_proto
 
-This plugin monitors a protocol in the BIRD configuration.
+This plugin monitors a protocol instance of the BIRD configuration.
 
-    Usage: check_bird_proto -p <protocol|protocol instance> [ -r <table> -z -s <socket> ]
+    Usage: check_bird -p <instance> [ -r <table> -z -s <socket> ]
 
  * BIRD must be running, or CRITICAL is reported.
- * The protocol must be up, or CRITICAL is reported.
+ * The protocol instance must be up, or CRITICAL is reported.
  * Optionally, routes must be imported, or CRITICAL is reported.
  * Otherwise, report OK and display the number of routes imported.
 
@@ -22,7 +22,7 @@ The plugin looks for routes in the default table (called `master`), or in the
 table specified with option `-r`. If the option `-z` is specified, the plugin
 will also report CRITICAL if no routes were found.
 
-If the BIRD control socket is not in the default location `/var/run/bird.ctl`,
+If the BIRD control socket is not in the default location `/var/run/bird/bird.ctl`,
 then an alternate location can be specified with option `-s`.
 
 Option `-p` is required, and specifies the protocol name to look for.

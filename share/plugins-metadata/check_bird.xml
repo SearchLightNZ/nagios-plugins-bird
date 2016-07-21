@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE resource-agent SYSTEM "ra-api-1.dtd">
+<resource-agent name="bird">
+<version>1.0</version>
+
+<longdesc lang="en">
+This plugin tests the given BIRD router instance.
+</longdesc>
+<shortdesc lang="en">This plugin tests the given BIRD router instance.</shortdesc>
+
+<parameters>
+
+<parameter name="instance" unique="0" required="1">
+<longdesc lang="en">
+Routing Instance Name (like 'route1' in 'route1  BGP  master  up  2016-06-02  Established ').
+</longdesc>
+<shortdesc lang="en">Routing Instance Name (like 'route1' in 'route1  BGP  master  up  2016-06-02  Established ').</shortdesc>
+<content type="string" default="" />
+</parameter>
+
+<parameter name="table" unique="0" required="0">
+<longdesc lang="en">
+The table which will be taken for fetching the routing information (default: master).
+</longdesc>
+<shortdesc lang="en">The table which will be taken for fetching the routing information (default: master).</shortdesc>
+<content type="string" default="" />
+</parameter>
+
+<parameter name="zero" unique="0" required="0">
+<longdesc lang="en">
+Whether zero routes is an error.
+</longdesc>
+<shortdesc lang="en">Whether zero routes is an error.</shortdesc>
+<content type="boolean" default="false" />
+</parameter>
+
+<parameter name="socket" unique="0" required="0">
+<longdesc lang="en">
+Path to the bird socket (default: /var/run/bird/bird.ctl).
+</longdesc>
+<shortdesc lang="en">Path to the bird socket (default: /var/run/bird/bird.ctl).</shortdesc>
+<content type="string" default="/var/run/bird/bird.ctl" />
+</parameter>
+
+</parameters>
+
+<actions>
+<action name="start"   timeout="20" />
+<action name="stop"    timeout="15" />
+<action name="status"  timeout="20" />
+<action name="monitor" timeout="20" interval="60" />
+<action name="meta-data"  timeout="15" />
+</actions>
+
+</resource-agent>
+
