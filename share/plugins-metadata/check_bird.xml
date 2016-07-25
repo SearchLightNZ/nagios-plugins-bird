@@ -18,6 +18,22 @@ Routing Instance Name (like 'route1' in 'route1  BGP  master  up  2016-06-02  Es
 <content type="string" default="" />
 </parameter>
 
+<parameter name="max_retries" unique="0" required="0">
+<longdesc lang="en">
+Maximum retries of fetching informations before raising a CRITICAL (default: 0).
+</longdesc>
+<shortdesc lang="en">Maximum retries of fetching informations before raising a CRITICAL.</shortdesc>
+<content type="integer" default="0" />
+</parameter>
+
+<parameter name="retry_interval" unique="0" required="0">
+<longdesc lang="en">
+Interval in seconds to wait before a retry will be runned (default: 10).
+</longdesc>
+<shortdesc lang="en">Interval in seconds to wait before a retry will be runned.</shortdesc>
+<content type="integer" default="10" />
+</parameter>
+
 <parameter name="table" unique="0" required="0">
 <longdesc lang="en">
 The table which will be taken for fetching the routing information (default: master).

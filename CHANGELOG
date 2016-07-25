@@ -1,5 +1,8 @@
 Nagios plugins for Bird
 -----------------------
+Version 0.4.0:
+* added multiple rounds and intervals between to check before alerting.
+
 Version 0.3.0:
 * add metadata xml for pacemaker nagios usage.
 

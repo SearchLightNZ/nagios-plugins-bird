@@ -1,5 +1,5 @@
 name = nagios-plugins-bird
-version = 0.3.0
+version = 0.4.0
 
 # install options (like configure)
 prefix = /usr

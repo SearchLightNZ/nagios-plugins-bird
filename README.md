@@ -3,18 +3,28 @@
 This repository contains [Nagios] plugins for monitoring the
 [BIRD routing daemon].
 
-The plugins are written in Perl, and depend on `Monitoring::Plugin` (included
+The plugins are written in Perl, and depends on `Monitoring::Plugin` (included
 in this Debian package). The necessary library `birdctl.pm` is part of the
-librarys (also included in this Debian package).
+librarys (which is also included in this Debian package).
 
-## check_bird_proto
+## check_bird
 
 This plugin monitors a protocol instance of the BIRD configuration.
 
-    Usage: check_bird -p <instance> [ -r <table> -z -s <socket> ]
+    Usage: check_bird -i <instance> [ -m <max_retries> -r <table> -z -s <socket> ]
+
+    Usage with GNU sytle long options:
+
+          check_bird --instance|i <instance>
+                    [ --max_retries|m <max_retries>
+                      --retry_interval|n <retry_interval in sec>
+                      --table|r <table>
+                      --zero|z
+                      --socket|s <socket> ]
 
  * BIRD must be running, or CRITICAL is reported.
- * The protocol instance must be up, or CRITICAL is reported.
+ * The protocol instance must be up (tested with max_retires attempts with
+   retry_interval seconds pause), or CRITICAL is reported.
  * Optionally, routes must be imported, or CRITICAL is reported.
  * Otherwise, report OK and display the number of routes imported.
 
@@ -25,12 +35,15 @@ will also report CRITICAL if no routes were found.
 If the BIRD control socket is not in the default location `/var/run/bird/bird.ctl`,
 then an alternate location can be specified with option `-s`.
 
-Option `-p` is required, and specifies the protocol name to look for.
+Option `--instance|i` is required, and specifies the protocol name to look for.
+
+The plugins tries the fetch the instance `-m` max_retires times before sending
+a not available.
 
  [Nagios]: http://www.nagios.org/
  [BIRD routing daemon]: http://bird.network.cz/
 
-## bird.ctl
+## birdctl.pm
 
 This is a simple Perl module for talking to BIRD's control socket. Briefly,
 you may use it as follows:
