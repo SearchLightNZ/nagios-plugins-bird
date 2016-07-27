@@ -6,16 +6,16 @@ use warnings;
 use FindBin;
 use lib "${FindBin::Bin}/../lib";
 
-use Data::Dumper;
-
 use Monitoring::Plugin;
 use birdctl;
+
+our $VERSION = "0.4.2";
 
 my $mp = Monitoring::Plugin->new(
   usage     => "Usage: %s -i <instance> [ -m <max_retries> -n <retry_interval> -r <table> -z -s <socket> ]",
   plugin    => "check_bird",
   shortname => "BIRD",
-  version   => "0.4",
+  version   => $VERSION,
   url       => 'https://github.com/ninech/nagios-plugins-bird/',
   blurb     => 'This plugin tests bird protocol instances.',
 );
@@ -59,24 +59,26 @@ $SIG{ALRM} = sub { $mp->plugin_exit(CRITICAL, "Timeout (possibly invalid command
 alarm $timeout;
 
 eval q{
+  if  (! -S $mp->opts->socket) { $mp->plugin_exit(CRITICAL, "Bird socket can't be opened!"); }
   my $bird = new birdctl(socket => $mp->opts->socket, restrict => 1);
+
+  my $max_retries = int($mp->opts->max_retries);
 
   # Check instance status (columns listed below)
   #  name   proto   table   state   since   info
   #  0      1       2       3       4       5
   my @status;
 
-  for (my $round = 0; $round <= $mp->opts->max_retries; $round++) {
-
+  for (my $round = 0; $round <= $max_retries; $round++) {
     foreach ($bird->long_cmd("show protocols " . $mp->opts->instance)) {
       # Find the first 1002 line.
       /^1002-/ and @status = split(/\s+/, substr($_, 5)) and last;
       # Fall through: no information found, print closing line.
-      /^\d{4} / and $round == ($mp->opts->max_retries+1) and $mp->plugin_exit(CRITICAL, $_);
+      /^\d{4} / and $round == $max_retries and $mp->plugin_exit(CRITICAL, $_);
     }
 
     # try again
-    if (($status[3] ne "up") and ($round != $mp->opts->max_retries+1)) {
+    if (($status[3] ne "up") and ($round != $max_retries)) {
       sleep($mp->opts->retry_interval);
       next;
     }

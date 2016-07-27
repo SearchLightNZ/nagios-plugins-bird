@@ -1,3 +1,10 @@
+nagios-plugins-bird (0.4.2-1) unstable; urgency=medium
+
+  * fixing round handling for retries
+  * added check on closed bird socket
+
+ -- Roman Plessl <roman.plessl@nine.ch>  Wed, 27 Jul 2016 09:41:30 +0200
+
 nagios-plugins-bird (0.4.1-1) unstable; urgency=medium
 
   * fix paranthesis error in checking status code

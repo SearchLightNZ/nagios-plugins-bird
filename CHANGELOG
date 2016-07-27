@@ -1,5 +1,12 @@
 Nagios plugins for Bird
 -----------------------
+Version 0.4.2:
+* raise error if configured bird socket does not exists.
+* fixing round handling if no up session have been found.
+
+Version 0.4.1:
+* fix wrong testing condition.
+
 Version 0.4.0:
 * added multiple rounds and intervals between to check before alerting.
 
