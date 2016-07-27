@@ -76,7 +76,7 @@ eval q{
     }
 
     # try again
-    if (($status[3] ne "up") and ($round != ($mp->opts->max_retries+1)) {
+    if (($status[3] ne "up") and ($round != $mp->opts->max_retries+1)) {
       sleep($mp->opts->retry_interval);
       next;
     }
