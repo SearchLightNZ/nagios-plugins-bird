@@ -25,8 +25,6 @@ This package provides a set of plugins to monitor the bird service.
 %prep
 %setup -q -n nagios-plugins-bird-upstream-%{version}
 
-%build
-
 %install
 rm -rf %{buildroot}
 install -d %{buildroot}%{nagiospluginsdir}
