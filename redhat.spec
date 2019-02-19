@@ -4,8 +4,7 @@ Name: nagios-plugins-bird
 Version: 0.4.2
 Release: 1%{?dist}
 Summary: Nagios plugins for Bird
-Source0: https://codeload.github.com/ninech/nagios-plugins-bird/tar.gz/upstream/%{version}
-
+Source0: https://github.com/ninech/nagios-plugins-bird/archive/upstream/%{version}.tar.gz
 License: MIT
 URL: https://github.com/ninech/nagios-plugins-bird
 
